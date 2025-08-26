@@ -58,3 +58,23 @@ workflows:
           success: true
           failure: false
   
+  test_email:
+    name: Email
+    instance_type: mac_mini_m2
+    scripts:
+      - name: Set Android SDK location
+        script: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
+      - name: Build Android
+        script: |
+          ./gradlew assembleDebug
+    # artifacts:
+    #   - app/build/outputs/apk/debug/app-debug.apk
+    publishing:
+      email:
+        recipients:
+          - helina@neverode.io
+        notify:
+          success: true
+          failure: false
+  
