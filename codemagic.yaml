@@ -20,6 +20,8 @@ workflows:
   test_linux:
     name: Linux test workflow
     instance_type: linux_x2
+    environment:
+      ubuntu: 20.04
     scripts:
       - name: Set Android SDK location
         script: |
